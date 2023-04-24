@@ -1,0 +1,483 @@
+"
+		{
+		 'version': '1.0',
+		 'decimalvalues' : 1,
+		 'content':[
+						{
+						'type' 		: 'ColumnPlaceHolder',
+						'content'	:[
+										{
+										'type'		: 'TerritoryHeader',
+										'content'	: {
+														'title'		:'Header 1',
+														'imagename'	:'GTMTerritoryHeader',
+														'message1'	:'Welcome back <b>{#loggedUserFirstName}</b>',
+														'message2'	:'{#Date|DD/MM/YYYY}',
+														'message3'	:'Route: {#Territory}',
+														'color'		:'pepDarkBlue'
+													}
+										},
+										{
+											'type'		: 'NewsFlash',
+											'content'	: {
+															'title'				:'NEWS',
+															'info'				:'Morning {#loggedUser} main info for territory:{#Territory} Is to drive carefully',
+															'color'				:'pepLightAmbar',
+															'colortitle'		:'pepDarkAmbar',
+															'tileimagename'		:'GTMNewsFlashRightImage',
+															'imagename'			:'GTMNewsflashPepsicoLogo'
+														}
+										},
+										{
+										'type'		: 'StoreInfoSection',
+										'content': {
+													'maxkpisize'	: 80,
+													'attributesection' : [{
+																			'kpitype'		: 'KPIImage',
+																			'kpiid'			: 'customersegment',
+																			'imagename'		: 'GTMStoreAttribute',
+																			'showtitle'		: False
+																		},
+																		{
+																			'kpitype'		: 'KPIImage',
+																			'kpiid'			: 'ps_type',
+																			'imagename'		: 'GTMStoreAttribute',
+																			'showtitle'		: False
+																		},
+																		{
+																			'kpitype'		: 'KPIImage',
+																			'kpiid'			: 'storetype',
+																			'imagename'		: 'GTMStoreAttribute',
+																			'showtitle'		: False
+																		},
+																		
+																		{
+																			'kpitype'		: 'KPIImage',
+																			'kpiid'			: 'cyclefrequency',
+																			'imagename'		: 'GTMStoreAttribute',
+																			'showtitle'		: False
+																		}
+																		
+																	],
+													'kpisection'	: [
+																	
+																	{
+																		'kpitype'		: 'KPIImage',
+																		'kpiid'			: 'S-ConnStatus', 
+																		'imagename'		: 'GTMStoreAttribute',
+																		'showtitle'		: False
+																	},
+																	
+																	{
+																		'kpitype'		: 'KPIImage',
+																		'kpiid'			: 'commpolicy',
+																		'imagename'		: 'GTMStoreAttribute',
+																		'showtitle'		: False
+																	},
+																	{
+																		'kpitype'		: 'KPIImage',
+																		'kpiid'			: 'commpolicybevs',
+																		'imagename'		: 'GTMStoreAttribute',
+																		'showtitle'		: False
+																	},
+																	{
+																		'kpitype'		: 'KPIImage',
+																		'kpiid'			: 'S-Plantilla',
+																		'imagename'		: 'GTMStoreAttribute',
+																		'showtitle'		: False
+																	}
+													]
+												}
+										},
+										{
+											'type' 		: 'RowPlaceHolder',
+											'content'	:[
+															{
+															'type' 		: 'ColumnPlaceHolder',
+															'content'	:[
+																				{
+																				'type'		: 'StandarSection',
+																				'content': {
+																							'title'			: 'My Sales Performance',
+																							'expandbutton'	: False,
+																							'marginbottom':	10,
+																							'leftbuttons'	:{},
+																							'traxbutton'	: True,
+																							'traxbuttontext': 'Store Audit',
+																							'actionbuttons' :[
+																								{'title':'Survey','action':'store_surveys','imagename':'GTMHeroSKU'},
+																								{'title':'Order','action':'orders'}
+																								
+																							],				
+																							'centerbuttons'	: {},
+																							'rightbuttons'	:{
+																												'buttons' : [						
+																									{'title':'MTD','default':True,'kpiids':['T-D_SalesVa','T-D_SalesVa_F','T-D_SalesVa_B'],'combinekpiids':[['T-D_SalesVa2','T-D_SalesVa_F2','T-D_SalesVa_B2'],['T-D_SalesVa4','T-D_SalesVa_F4','T-D_SalesVa_B4']]},
+																									{'title':'QTD','kpiids':['T-W_SalesVa','T-W_SalesVa_F','T-W_SalesVa_B'],'combinekpiids':[['T-W_SalesVa2','T-W_SalesVa_F2','T-W_SalesVa_B2'],['T-W_SalesVa4','T-W_SalesVa_F4','T-W_SalesVa_B4']]},
+																									{'title':'YTD','kpiids':['T-W_SalesVa','T-W_SalesVa_F','T-W_SalesVa_B'],'combinekpiids':[['T-W_SalesVa2','T-W_SalesVa_F2','T-W_SalesVa_B2'],['T-W_SalesVa4','T-W_SalesVa_F4','T-W_SalesVa_B4']]}																													
+																												]
+																											},
+																							'kpisection'	: [
+																											{
+																												'kpitype'					: 'kpitachometerprogressbar',
+																												'kpiid'						: 'T-D_SalesVa', 
+																												'kpiid2'					: 'T-D_SalesVa_F', 
+																												'title'						: 'Net Sales',
+																												'subtitle'					: 'Total',
+																												'imageiconname' 			: 'GTMIconPEP',
+																												'targetvisible'				: True,
+																												'actualwithtargetresult'	: True
+																											},																			
+																											{
+																												'kpitype'					: 'kpitachometerprogressbar',
+																												'kpiid'						: 'T-D_SalesVa_F', 
+																												'title'						: 'Net Sales',
+																												'subtitle'					: 'Foods',
+																												'imageiconname' 			: 'GTMIconLays',
+																												'targetvisible'				: True,
+																												'actualwithtargetresult'	: True
+																											},																			
+																											{
+																												'kpitype'					: 'kpitachometerprogressbar',
+																												'kpiid'						: 'T-D_SalesVa_B', 
+																												'title'						: 'Net Sales',
+																												'subtitle'					: 'Beverages',
+																												'targetvisible'				: True,
+																												'imageiconname' 			: 'GTMIconPepsi',
+																												'actualwithtargetresult'	: True
+																												
+																											},
+																											{
+																												'kpitype'		: 'kpitachometerprogressbar',
+																												'kpiid'			: 'S-y_staleperc', 
+																												'title'			: 'Returns',
+																												'subtitle'		: 'YTD',
+																												'targetvisible'	: True,
+																												'imageiconname' : 'GTMIconPEP',
+																												'targetinverse'	: True,
+																												'suffix'		: '%',
+																												'actualwithtargetresult'	: True
+																		
+																											}
+																												
+																										]
+																							
+																							}
+																			},
+																			{
+																				'type'		: 'StandarSection',
+																				'content': {
+																							'title'			: 'My PepsiConnect',
+																							'showtitle'		: True,
+																							'imagename'		: 'GTMBlueTItleImage',
+																							'expandbutton'	: False,
+																							'maxkpisize'	: 90,
+																							'marginbottom'	:20,
+																							'leftbuttons'	:  {},
+																							'centerbuttons'	: {
+																												
+																											},
+																							'rightbuttons'	:{
+																												'mandatory'	: True,
+																												'buttons'	: [	{'title':'MTD','default':True, 'kpiids':['ID20','ID21','T-M_ValMix','ID23'], 'combinekpiids': []},
+																												{'title':'Last 12W','kpiids':['ID24','ID25','T-Y_ValMix','ID27'], 'combinekpiids': []}
+																												]
+																											},
+																							'kpisection'	: [
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'ID1', 
+																												'title'			: '# Orders Digital',
+																												'imagename'		: 'GTMPepConnect',
+																												'subtitle'		: '',
+																												'percentageKpi'	: False,
+																												'imageiconname' : 'GTMIconDO'
+																											},
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'ID3', 
+																												'title'			: '# Orders PV',
+																												'imagename'		: 'GTMnondigital',
+																												'subtitle'		: '',
+																												'percentageKpi'	: False,
+																												'imageiconname' : 'GTMIconDO'
+																											},
+																											
+																											{
+																												'kpitype'		: 'KPICircleProgressBar',
+																												'kpiid'			: 'ID4', 
+																												'title'			: 'Target Achiev.',
+																												'subtitle'		: 'Monthly',
+																												'targetvisible'	: True,
+																												'imagename'		: 'GTMPepConnect',
+																												'imageiconname' : 'GTMIcontarget',	
+																												'actualpercentage' : True,
+																												'percentageKpi'	: True,
+																												'actualvstotal'	: False
+																											},
+																											{
+																												'kpitype'		: 'KPIProgressBar',
+																												'kpiid'			: 'T-D_DropVa', 
+																												'title'			: 'Dropsize',
+																												'subtitle'		: 'Digital',
+																												'targetvisible'	: True,
+																												'suffix'		: '€'
+																											},
+																											{
+																												'kpitype'		: 'KPIProgressBar',
+																												'kpiid'			: 'T-D_DropVa', 
+																												'title'			: 'Dropsize',
+																												'subtitle'		: 'Presell',
+																												'targetvisible'	: True,
+																												'actualpercentagemandatory' : True,
+																												'actualcolor':[
+																													{
+																														'value':35,
+																														'color':'pepRed_color'
+																													},
+																													{
+																														'value':75,
+																														'color':'pepLightAmbar_color'
+																													},
+																													{
+																														'value':100,
+																														'color':'pepDarkGreen_color'
+																													}
+																												]
+																											}
+																										]
+																							
+																							}
+																			},
+																			{
+																			'type'		: 'StandarSection',
+																			'content': {
+																							'title'			: 'Image Recognition',
+																							'expandbutton'	: False,
+																							'MARGINBOTTOM':20,
+																							'leftbuttons'	:{},
+																							'centerbuttons'	: {},
+																							'rightbuttons'	:{},
+																							'kpisection'	: [],
+																							'traxbutton'	: True,
+																							'traxbuttontext': 'Store Audit'
+																							}
+																			}
+																		]
+															},
+															{
+															'type' 		: 'ColumnPlaceHolder',
+															'content'	:[
+																			{
+																				'type'		: 'StandarSection',
+																				'content': {
+																							'title'			: 'My Perfect Store',
+																							'expandbutton'	: False,
+																							'MARGINBOTTOM':20,
+																							'leftbuttons'	:{},
+																							'centerbuttons'	: {},
+																							'rightbuttons'	:{},
+																							
+																							'kpisection'	: [
+																											{
+																												'kpitype'		: 'KPICircleProgressBar',
+																												'kpiid'			: 'S-KPI_PiCOS_FOOD', 
+																												'title'			: 'PicOS',
+																												'subtitle'		: 'Foods',
+																												'targetvisible'	: True,
+																												'percentageKpi'	: True,
+																												'imagename'		: 'GTMPSlogo',
+																												'imageiconname' : 'GTMIconLays',
+																												'actualvstotal'	: False
+																											},
+																											{
+																												'kpitype'		: 'KPICircleProgressBar',
+																												'kpiid'			: 'S-KPI_PiCOS_BEVERAGE', 
+																												'title'			: 'PicOS',
+																												'subtitle'		: 'Beverages',
+																												'percentageKpi'	: True,
+																												'targetvisible'	: True,
+																												'imagename'		: 'GTMPSlogo',	
+																												'imageiconname' : 'GTMIconPepsi',
+																												'actualvstotal'	: False
+																											},
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'S-PS_KPI_TOP_FOOD_S', 
+																												'title'			: 'Hero SKU Dist.',
+																												'subtitle'		: 'Foods',
+																												'targetvisible'	: True,
+																												'percentageKpi'	: False,
+																												'imagename'		: 'GTMHeroSKU',
+																												'imageiconname' : 'GTMIconPepsi',
+																												'actualvstotal'	: True
+																											},
+																											
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'S-PS_KPI_TOP_BEBIDA_S', 
+																												'title'			: 'Hero SKU Dist.',
+																												'subtitle'		: 'Beverages',
+																												'imagename'		: 'GTMHeroSKU',	
+																												'imageiconname' : 'GTMIconLays',
+																												'targetvisible'	: True,
+																												'actualvstotal'	: True
+																											},
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'S-PS_SUV_num_racks', 
+																												'title'			: 'Num racks',
+																												'subtitle'		: 'Foods',
+																												'imagename'		: 'GTMrack',
+																												'targetvisible'	: True,
+																												'resulticoninimage' : True
+																											},
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'S-PS_SUV_cooler_placement', 
+																												'title'			: 'PEP Cooler',
+																												'subtitle'		: 'Beverages',
+																												'imagename'		: 'GTMrack',
+																												'resulticoninimage' : True
+																											},
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'S-PS_SUV_1position', 
+																												'title'			: 'First Position',
+																												'subtitle'		: 'Foods',
+																												'imagename'		: 'GTMequiplocation',
+																												'resulticoninimage' : True
+																											},
+																											{
+																												'kpitype'		: 'KPIImage',
+																												'kpiid'			: 'S-PICOS_F_OT', 
+																												'title'			: 'Picos',
+																												'subtitle'		: 'Foods',
+																												'imagename'		: 'GTMequiplocation',
+																												'targetvisible'	: True,		'resulticoninimage':True,											
+																												'actualpercentagemandatory' : True,
+																												'actualcolor':[
+																													{
+																														'value':35,
+																														'color':'pepRed_color'
+																													},
+																													{
+																														'value':75,
+																														'color':'pepLightAmbar_color'
+																													},
+																													{
+																														'value':100,
+																														'color':'pepDarkGreen_color'
+																													}
+																												]
+																												
+																																					
+																											}
+																										]
+																							
+																							}
+																		},
+																		{
+																			'type'		: 'keyactionsection',
+																			'content': {
+																						'title'			: 'Key Actions',
+																						'keyactions'		: [
+																								{
+																									'title' : 'Plan',
+																									'action': 'srdocument'
+																								},
+																								{
+																									'title'	: 'NBA',
+																									'expandsection' : {
+																										'type' 		: 'NextBestActionSection',
+																										'content'	:{
+																												'title'	: 'Next Best Action',
+																												'itemminheight'	: 60
+																										}
+																									}
+																								},
+																								{
+																									'title'	: 'missing',
+																									'expandsection' : {
+																										'type' 		: 'missingherosku',
+																										'content'	:{
+																												'title'	: 'Missing Hero',
+																												'itemminheight'	: 60
+																										}
+																									}
+																								},
+																								{
+																									'title':	'Equipos',
+																									'expandsection':	{
+																										'type'				: 'additemsection',
+																										'content':	{
+																											'type'			: 'assets',
+																											'titleexistitems'	: 'Equipamiento actual',
+																											'titlenewitems'		: 'Nuevo Equipamiento',
+																											'imagedefault'		: 'GTMDefaultCooler',
+																											'valueFields'		: ['status'],
+																											'imageFields'		: ['at','ab'],
+																											'imageprefix'		: '',
+																											'addinfo':[
+																						{'master_name':'asset_vendor','member':'av','value':'cooler'},
+																						{'master_name':'asset_status','member':'status','value':'Solicitud alta'},
+																						{'master_name':'asset_condition','member':'condition','value':'Genérica'}
+																														],
+																											'hide'		: [
+																												{'member':'status','value':['Z']}
+																											],
+																											'topicon'	: '',
+																											'infoFields': [
+																												{'value':'prompt'},
+																												{'value':'new Date(lastchk).toLocaleDateString()','alignment':'Right'}
+																													],
+																											'showinfobefore'	: True,
+																											'newitemsinfo' : [
+																											{'master_name': 'asset_type', 'member': 'at'},
+																											{'master_name': 'asset_brand', 'member': 'ab'}
+																														],
+																											'buttons' : [
+																			{'action':'add',	'title':'Solicitar', 'style':'success', 
+																					'updateinfo':[
+																						{'master_name':'asset_status','member':'status','value':'Entregado'}
+																								]},
+																			{'action':'open',	'title':'Auditar', 'style':'info', 
+																					'addinfo':[
+																						{'master_name':'asset_status','member':'status','value':'Entregado'}
+																								]},
+																			{'action':'error',	'title':'Problema', 'style':'danger', 'visible':'hasContract', 'create':'assetRequest', 
+																					'addinfo': [
+																						{'member':'asset','value':'_this_'}
+																								]},
+																			{'action':'requested','title':'Solicitado', 'style':'warning'},
+																			{'action':'delivery','title':'En tránsito', 'style':'success'},
+																			{'action':'reject','title':'Rechazado', 'style':'danger', 
+																					'updateinfo':[
+																						{'master_name':'asset_status','member':'status','value':'Z'}
+																								]},
+																			{'action':'issue','title':'Incidencia', 'style':'warning'}
+																													],
+																											'configuration' : [
+																			{'values':[], 'active':True, 'buttons':['add','open']},
+																			{'values':['Entregado'], 'active':True, 'buttons':['open','error']},
+																			{'values':['En trámite'], 'active':True, 'buttons':['delivery']},
+																			{'values':['Solicitud Alta','En proceso'], 'active':True, 'buttons':['requested']},
+																			{'values':['En Tránsito','Rechazado'], 'active':True, 'buttons':['reject']},
+																			{'values':['Incidencia'], 'active':True, 'buttons':['issue']}
+																															]
+																													}
+																									}
+																								}
+																								
+																							]
+																					}
+																		}
+																]
+															}
+														]
+										}
+								]
+						}
+					]
+		}
+	"
