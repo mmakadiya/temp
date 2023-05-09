@@ -647,7 +647,7 @@ IF not blnExitScript Then
 						If Trim(Err.Description) = "" Then
 							objOutErrFile.WriteLine("there are some error while process import file  " )
 							
-							objSystemLog.LogErrorDetail "there are some error while process import file  "
+							objSystemLog.LogErrorDetail "","", "there are some error while process import file  "
 						Else
 							objOutErrFile.WriteLine("there are some error while process import file  " & Err.Description)
 							
@@ -923,7 +923,7 @@ Function EnableTouchEvent(System)
 											SET_NOTHING Array(objTransaction,objval)
 										On Error Goto 0
 									Else
-										objSystemLog.LogNormalDetail "The " & strEvent & " touch event was not found."
+										objSystemLog.LogErrorDetail "","", "The " & strEvent & " touch event was not found."
 									End If								
 									set objTouchEvent = nothing
 									set objRoleTouchEvent = nothing								
@@ -931,7 +931,7 @@ Function EnableTouchEvent(System)
 							Next
 						Next
 					Else 
-						objSystemLog.LogNormalDetail "The " & ObjRoleCode & "role code was not found."
+						objSystemLog.LogErrorDetail "","", "The " & ObjRoleCode & "role code was not found."
 					End If
 				End If
 			Loop
@@ -2733,7 +2733,7 @@ Function UpdateWorkflowMembers(System)
 						strFields = strSplitLine(1)
 						If strFolderScanFilter <> "" and strFields <> ""  Then
 						Else
-							objSystemLog.LogErrorDetail "Invalid line : " & strCode
+							objSystemLog.LogErrorDetail "","", "Invalid line : " & strCode
 						End If
 						If System.Folders.WF_Processes.Exists(strFolderScanFilter) then
 							For each objWF in System.Folders.WF_Processes.scan(strFolderScanFilter)
@@ -2753,7 +2753,7 @@ Function UpdateWorkflowMembers(System)
 								SET_NOTHING Array(objTransaction,objval)
 							Next
 						Else 
-							objSystemLog.LogNormalDetail "The workflow does not exists : " & strFolderScanFilter
+							objSystemLog.LogErrorDetail "","", "The workflow does not exists : " & strFolderScanFilter
 						End If
 					End If
 				End If
@@ -2783,7 +2783,7 @@ function loadTouchDBParts(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredTouchDBParts = intErroredTouchDBParts + 1
 				Else
 					'strCode = Replace(Replace(Replace(objCodeFile.ReadAll,"&","&amp;"),"<","&lt;"),">","&gt;")
@@ -2812,7 +2812,7 @@ function loadTouchDBParts(System,strDirectoryPath)
 										set objDBPart = System.Folders.TDB_DashboardPart.CreateNewInstance(,,strDBPartKey)
 									Else
 										blnProcess = False
-										objSystemLog.LogNormalDetail "Touch Dashboard Part Not Exists in system. Wrong File Name Format to create new dashboard part : " & strFileName
+										objSystemLog.LogErrorDetail "","", "Touch Dashboard Part Not Exists in system. Wrong File Name Format to create new dashboard part : " & strFileName
 									End IF
 								End If
 								IF blnProcess Then
@@ -2876,21 +2876,21 @@ function loadTouchDBParts(System,strDirectoryPath)
 										end if
 									Else
 										intErroredTouchDBParts = intErroredTouchDBParts + 1
-										objSystemLog.LogErrorDetail "Something Wrong : " & strFileName
+										objSystemLog.LogErrorDetail "","", "Something Wrong : " & strFileName
 									End If
 								Else
 									intErroredTouchDBParts = intErroredTouchDBParts + 1
 								End IF
 							Else
 								intErroredTouchDBParts = intErroredTouchDBParts + 1
-								objSystemLog.LogErrorDetail "Wrong File Name Format : " & strFileName
+								objSystemLog.LogErrorDetail "","", "Wrong File Name Format : " & strFileName
 							End If
 						Else
 							intErroredTouchDBParts = intErroredTouchDBParts + 1
-							objSystemLog.LogErrorDetail "Wrong File Name Format : " & strFileName
+							objSystemLog.LogErrorDetail "","", "Wrong File Name Format : " & strFileName
 						End IF			
 					Else
-						objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+						objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 						intErroredTouchDBParts = intErroredTouchDBParts + 1
 					End If
 				End If
@@ -2925,7 +2925,7 @@ function loadTouchDBTemplates(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredTouchDBTemplates = intErroredTouchDBTemplates + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -2970,17 +2970,17 @@ function loadTouchDBTemplates(System,strDirectoryPath)
 							end if
 						Else
 							intErroredTouchDBTemplates = intErroredTouchDBTemplates + 1
-							objSystemLog.LogErrorDetail "Something Wrong : " & strDBTemplateKey
+							objSystemLog.LogErrorDetail "","", "Something Wrong : " & strDBTemplateKey
 						End If
 						
 					Else
 						intErroredTouchDBTemplates = intErroredTouchDBTemplates + 1
-						objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+						objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					End If
 				End If
 			Else
 				intErroredTouchDBTemplates = intErroredTouchDBTemplates + 1
-				objSystemLog.LogErrorDetail "File doesn't exists : " & strCodeFilePath
+				objSystemLog.LogErrorDetail "","",  "File doesn't exists : " & strCodeFilePath
 			End If
 		End IF
 	Next
@@ -3005,7 +3005,7 @@ Function loadTouchDBTemplatePos(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredTouchDBTemplatePos = intErroredTouchDBTemplatePos + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3046,7 +3046,7 @@ Function loadTouchDBTemplatePos(System,strDirectoryPath)
 										objDBTemplatePos.ListOrder = intListOrder
 										objDBTemplatePos.save objTransaction
 									Else
-										objSystemLog.LogErrorDetail "Something Wrong : Template - '"& arrTokens(0) &"', Position - '"& strTag &"'"
+										objSystemLog.LogErrorDetail "","", "Something Wrong : Template - '"& arrTokens(0) &"', Position - '"& strTag &"'"
 									End If
 								End If
 							Next
@@ -3060,17 +3060,17 @@ Function loadTouchDBTemplatePos(System,strDirectoryPath)
 								objSystemLog.LogErrorDetail "","","There were some error in updating/creating the '"& arrTokens(0) &"' touch dashboard template's Position(s) : '" & objval.Result.Message & "'" 
 							end if
 						Else
-							objSystemLog.LogErrorDetail "Touch Dashboard Template doesn't exist in system : " & arrTokens(0)
+							objSystemLog.LogErrorDetail "","", "Touch Dashboard Template doesn't exist in system : " & arrTokens(0)
 							intErroredTouchDBTemplatePos = intErroredTouchDBTemplatePos + 1
 						End If
 					Else
-						objSystemLog.LogErrorDetail "File is empty : " & objFile.Name
+						objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 						intErroredTouchDBTemplatePos = intErroredTouchDBTemplatePos + 1
 					End If
 				End If
 			Else
 				intErroredTouchDBTemplatePos = intErroredTouchDBTemplatePos + 1
-				objSystemLog.LogErrorDetail "File doesn't exists : " & strCodeFilePath
+				objSystemLog.LogErrorDetail "","", "File doesn't exists : " & strCodeFilePath
 			End If
 		End If
 	Next
@@ -3096,7 +3096,7 @@ function loadTouchDB(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredTouchDB = intErroredTouchDB + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3123,15 +3123,15 @@ function loadTouchDB(System,strDirectoryPath)
 										blnProcess = True
 									Else
 										blnProcess = False
-										objSystemLog.LogNormalDetail "The '"& strTemplateName &"' touch dashboard template does not exists in system."
+										objSystemLog.LogErrorDetail "","",  "The '"& strTemplateName &"' touch dashboard template does not exists in system."
 									End If
 								Else
 									blnProcess = False
-									objSystemLog.LogNormalDetail "The '"& strDBKey &"' touch dashboard doesn't exist in system and config file to create new touch dashboard doesn't contain sufficient information."
+									objSystemLog.LogErrorDetail "","",  "The '"& strDBKey &"' touch dashboard doesn't exist in system and config file to create new touch dashboard doesn't contain sufficient information."
 								End If
 							Else
 								blnProcess = False
-								objSystemLog.LogNormalDetail "The '"& strDBKey &"' touch dashboard doesn't exist in system and config file to create new touch dashboard doesn't contain sufficient information."
+								objSystemLog.LogErrorDetail "","",   "The '"& strDBKey &"' touch dashboard doesn't exist in system and config file to create new touch dashboard doesn't contain sufficient information."
 							End If
 						End If
 						
@@ -3203,20 +3203,20 @@ function loadTouchDB(System,strDirectoryPath)
 								end if								
 							Else
 								intErroredTouchDB = intErroredTouchDB + 1
-								objSystemLog.LogNormalDetail "Something wrong : " & strDBKey
+								objSystemLog.LogErrorDetail "","", "Something wrong : " & strDBKey
 							End If
 						Else
 							intErroredTouchDB = intErroredTouchDB + 1
-							objSystemLog.LogNormalDetail "Something wrong : " & strDBKey
+							objSystemLog.LogErrorDetail "","", "Something wrong : " & strDBKey
 						End If 
 					Else
-						objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+						objSystemLog.LogErrorDetail "","",  "File is empty : " & objFile.Name
 						intErroredTouchDB = intErroredTouchDB + 1
 					End IF
 				End IF
 			Else
 				intErroredTouchDB = intErroredTouchDB + 1
-				objSystemLog.LogNormalDetail "File doesn't exists : " & strCodeFilePath
+				objSystemLog.LogErrorDetail "","", "File doesn't exists : " & strCodeFilePath
 			End IF
 		End IF
 	Next
@@ -3242,7 +3242,7 @@ function loadKPIS(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","",  "File is empty : " & objFile.Name
 					intErroredKPIS = intErroredKPIS + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3330,7 +3330,7 @@ function loadViews(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","",  "File is empty : " & objFile.Name
 					intErroredViews = intErroredViews + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3413,7 +3413,7 @@ function loadViewGroups(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","",  "File is empty : " & objFile.Name
 					intErroredViewGroups = intErroredViewGroups + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3483,7 +3483,7 @@ function loadReportTemplates(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredReportTemplates = intErroredReportTemplates + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3568,7 +3568,7 @@ function loadSummaryTemplates(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredSummaryTemplates = intErroredSummaryTemplates + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3645,7 +3645,7 @@ function loadDynamicMemberDefinitions(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredDynamicMemberDefinitions = intErroredDynamicMemberDefinitions + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -3942,7 +3942,7 @@ function loadPushReports(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredPushReports = intErroredPushReports + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -4050,7 +4050,7 @@ function LoadTouchEvents(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredTouchEvent = intErroredTouchEvent + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -4124,7 +4124,7 @@ function LoadAnalyticViews(System,strDirectoryPath)
 			If objFSO.FileExists(strCodeFilePath) Then
 				Set objCodeFile = objFSO.OpenTextFile(strCodeFilePath, 1)
 				If objCodeFile.AtEndOfStream Then
-					objSystemLog.LogNormalDetail "File is empty : " & objFile.Name
+					objSystemLog.LogErrorDetail "","", "File is empty : " & objFile.Name
 					intErroredAnalytics = intErroredAnalytics + 1
 				Else
 					strCode = objCodeFile.ReadAll
@@ -4306,7 +4306,7 @@ Function Loadimports(System,scriptdir,objSystemLog)
 												end if
 											else
 												'objOutErrFile.WriteLine("TLF '"& TLFname &"' dose not Exist in system")
-												objSystemLog.LogNormalDetail "TLF '"& TLFname &"' dose not Exist in system."
+												objSystemLog.LogErrorDetail "","", "TLF '"& TLFname &"' dose not Exist in system."
 												blnStatus = False
 											end if
 										end if
@@ -4343,7 +4343,7 @@ Function Loadimports(System,scriptdir,objSystemLog)
 																		If Trim(Err.Description) = "" Then
 																			'objOutErrFile.WriteLine(strdataline &"Parent Key Filter error in expression: " & strFetchParentFilter)
 																			
-																			objSystemLog.LogNormalDetail strdataline &"Parent Key Filter error in expression: " & strFetchParentFilter
+																			objSystemLog.LogErrorDetail "","", strdataline &"Parent Key Filter error in expression: " & strFetchParentFilter
 																		Else
 																			'objOutErrFile.WriteLine(strdataline &"Parent Key Filter " & Err.Description)
 																			
@@ -4386,15 +4386,15 @@ Function Loadimports(System,scriptdir,objSystemLog)
 																				end if
 																			else
 																				'objOutErrFile.WriteLine("Not all Key Mapping Members Exist in found in File")
-																				objSystemLog.LogNormalDetail "Not all Key Mapping Members Exist in found in File"
+																				objSystemLog.LogErrorDetail "","", "Not all Key Mapping Members Exist in found in File"
 																			end if
 																		else
 																			'objOutErrFile.WriteLine(strdataline &"No SubFolder with name " &  SubFolder &" found in TLF "& TLFname)
-																			objSystemLog.LogNormalDetail strdataline &" No SubFolder with name " &  SubFolder &" found in TLF "& TLFname
+																			objSystemLog.LogErrorDetail "","",  strdataline &" No SubFolder with name " &  SubFolder &" found in TLF "& TLFname
 																		end if
 																	Else
 																		'objOutErrFile.WriteLine(strdataline &"No Record found in TLF "& TLFname &" Parent Key Filter " & Err.Description)
-																		objSystemLog.LogNormalDetail strdataline &" No Record found in TLF "& TLFname &" Parent Key Filter " & Err.Description
+																		objSystemLog.LogErrorDetail "","",  strdataline &" No Record found in TLF "& TLFname &" Parent Key Filter " & Err.Description
 																	end if
 																end if 
 															else
@@ -4420,14 +4420,14 @@ Function Loadimports(System,scriptdir,objSystemLog)
 																	end if
 																else
 																	'objOutErrFile.WriteLine("Not all Key Mapping Members Exist in found in File")
-																	objSystemLog.LogNormalDetail "Not all Key Mapping Members Exist in found in File"
+																	objSystemLog.LogErrorDetail "","", "Not all Key Mapping Members Exist in found in File"
 																end if
 															end if
 															BlnValidateDataMembers = ""
 															BlnValidatekeyMembers = ""
 														else
 															'objOutErrFile.WriteLine("Not all members values are available in line" &strdataline)
-															objSystemLog.LogNormalDetail "Not all members values are available in line" &strdataline
+															objSystemLog.LogErrorDetail "","", "Not all members values are available in line" &strdataline
 														end if
 														Erase ArrayMemberValues
 														strdataline = ""
@@ -4435,7 +4435,7 @@ Function Loadimports(System,scriptdir,objSystemLog)
 												next
 											else
 												'objOutErrFile.WriteLine("Not all Parent Key Mapping Members Exist in found in File")
-												objSystemLog.LogNormalDetail "Not all Parent Key Mapping Members Exist in found in File"
+												objSystemLog.LogErrorDetail "","", "Not all Parent Key Mapping Members Exist in found in File"
 											End if
 											
 											Erase ArrayDataMembers
@@ -4448,7 +4448,7 @@ Function Loadimports(System,scriptdir,objSystemLog)
 									set objFolder = Nothing
 								else
 									'objOutErrFile.WriteLine("TLF '"& TLFname &"' dose not Exist in system")
-									objSystemLog.LogNormalDetail "TLF '"& TLFname &"' dose not Exist in system"
+									objSystemLog.LogErrorDetail "","", "TLF '"& TLFname &"' dose not Exist in system"
 								end if
 								TLFname = "" 
 								BlnCancreatenew = "" 
@@ -4458,7 +4458,7 @@ Function Loadimports(System,scriptdir,objSystemLog)
 								CastDownclassname =""
 							else
 								objOutErrFile.WriteLine("Please make sure file must have Config columns 'ToplevelFolder','CanCreateNew','KeyMapping'")
-								objSystemLog.LogNormalDetail "Please make sure file must have Config columns 'ToplevelFolder','CanCreateNew','KeyMapping'"
+								objSystemLog.LogErrorDetail "","", "Please make sure file must have Config columns 'ToplevelFolder','CanCreateNew','KeyMapping'"
 							end if
 							objOutErrFile.close
 							objSystemLog.LogNormalDetail "Process completed for file '" & objFile.Name & "'."
@@ -4493,7 +4493,7 @@ Function Loadimports(System,scriptdir,objSystemLog)
 				end if
 			next
 		else
-			objSystemLog.LogNormalDetail "Folder with name " & strFolder &" not Exits."
+			objSystemLog.LogErrorDetail "","", "Folder with name " & strFolder &" not Exits."
 		end if
 	
 End Function
@@ -4601,7 +4601,7 @@ Function ImportCSVs(ArrayKeyMappingMemberswithindex,ArrayDataMembers,ArrayMember
 			If Trim(Err.Description) = "" Then
 				'objOutErrFile.WriteLine(strdataline & " Key Filter error in expression: " & strFetchFilter)
 				
-				objSystemLog.LogNormalDetail strdataline & " Key Filter error in expression: " & strFetchFilter
+				objSystemLog.LogErrorDetail "","", strdataline & " Key Filter error in expression: " & strFetchFilter
 			Else
 				'objOutErrFile.WriteLine(strdataline &"Key Filter " & Err.Description)
 				
@@ -4644,11 +4644,11 @@ Function ImportCSVs(ArrayKeyMappingMemberswithindex,ArrayDataMembers,ArrayMember
 					End If
 				else
 					'objOutErrFile.WriteLine("System not allow to create new instance in TLF: " & objFolder.name)
-					objSystemLog.LogNormalDetail "System not allow to create new instance in TLF: " & objFolder.name
+					objSystemLog.LogErrorDetail "","", "System not allow to create new instance in TLF: " & objFolder.name
 				end if
 			else
 				'objOutErrFile.WriteLine("Configuration Error. No suitable to create new instance in TLF: " & objFolder.name)
-				objSystemLog.LogNormalDetail "Configuration Error. No suitable to create new instance in TLF: " & objFolder.name
+				objSystemLog.LogErrorDetail "","", "Configuration Error. No suitable to create new instance in TLF: " & objFolder.name
 				exit Function
 			end if
 		end if
@@ -4687,7 +4687,7 @@ Function Updatemembervalue(objInst,StrMembers,StrMemberValues,ByRef BlnStatus,By
 					set objInst.members(Trim(Left(StrMembers, i - 1))).value = objjoin
 				else
 					objOutErrFile.WriteLine(strdataline & " for set join member " & objMember.definition.title.value &" Not able to find the record  " &StrFilter & "in Folder " & objMember.targetfolder.title.value)	
-					objSystemLog.LogNormalDetail strdataline & " for set join member " & objMember.definition.title.value &" Not able to find the record  " &StrFilter & "in Folder " & objMember.targetfolder.title.value
+					objSystemLog.LogErrorDetail "","", strdataline & " for set join member " & objMember.definition.title.value &" Not able to find the record  " &StrFilter & "in Folder " & objMember.targetfolder.title.value
 					blndataerror = True
 				end if
 				set objjoin = nothing
@@ -4704,7 +4704,7 @@ Function Updatemembervalue(objInst,StrMembers,StrMemberValues,ByRef BlnStatus,By
 						set objInst.members(left(StrMembers,instr(i+1,StrMembers,".")-1)).value = objjoin
 					else
 						objOutErrFile.WriteLine(strdataline & " for set join member " & objMember2.definition.title.value &" Not able to find the record  " &StrFilter & "in Folder " & objMember2.targetfolder.title.value)	
-						objSystemLog.LogNormalDetail strdataline & " for set join member " & objMember2.definition.title.value &" Not able to find the record  " &StrFilter & "in Folder " & objMember2.targetfolder.title.value
+						objSystemLog.LogErrorDetail "","", strdataline & " for set join member " & objMember2.definition.title.value &" Not able to find the record  " &StrFilter & "in Folder " & objMember2.targetfolder.title.value
 						blndataerror = True
 					end if
 					set objjoin = nothing
@@ -4722,7 +4722,7 @@ Function Updatemembervalue(objInst,StrMembers,StrMemberValues,ByRef BlnStatus,By
 				on error resume next
 					objInst.members(StrMembers).value = StrMemberValues
 					If Err <> 0 Then
-						objSystemLog.LogNormalDetail "There were some error occurred while setting the value to the member '" & StrMembers & "'."
+						objSystemLog.LogErrorDetail "","", "There were some error occurred while setting the value to the member '" & StrMembers & "'."
 						objSystemLog.LogErrorDetail "","",StrMembers & " - Error: " & Err.Description
 						objOutErrFile.WriteLine("There were some error occurred while setting the value to the member '" & StrMembers & "'." & " - Error: " & Err.Description)
 						blndataerror = True
@@ -4733,12 +4733,12 @@ Function Updatemembervalue(objInst,StrMembers,StrMemberValues,ByRef BlnStatus,By
 				BlnStatus = False
 			Case 3  ' join
 				objOutErrFile.WriteLine("Please Provide join member 'Key Mapping Members' value for set join member ")
-				objSystemLog.LogNormalDetail "Please Provide join member 'Key Mapping Members' value for set join member "
+				objSystemLog.LogErrorDetail "","", "Please Provide join member 'Key Mapping Members' value for set join member "
 				BlnStatus = False	
 		End Select
 	end if
 	If Err <> 0 Then
-		objSystemLog.LogNormalDetail "There were some error occurred while setting the value to the member '" & StrMembers & "'."
+		objSystemLog.LogErrorDetail "","", "There were some error occurred while setting the value to the member '" & StrMembers & "'."
 		objSystemLog.LogErrorDetail "","",StrMembers & " - Error: " & Err.Description
 		'objOutErrFile.WriteLine("There were some error occurred while setting the value to the member '" & StrMembers & "'." & " - Error: " & Err.Description)
 	End IF
@@ -4771,7 +4771,7 @@ Function GetInstanceFilter(ArrayKeyMappingMemberswithindex, ArrayMemberValues ,B
 			if Blnoptional = False then
 				BlnStatus = False
 				objOutErrFile.WriteLine(strdataline & """Key Mapping Members value must not be null""")
-				objSystemLog.LogNormalDetail strdataline & """Key Mapping Members value must not be null"""
+				objSystemLog.LogErrorDetail "","", strdataline & """Key Mapping Members value must not be null"""
 			end if
 		end if
 		strKeyMappingMember = ""
